@@ -1,5 +1,5 @@
 body {
-	background-color: #007ee6;
+	background-color: #008CDB;
 	font-family: 'Open Sans', sans-serif;
 	margin: 0;
 }
@@ -9,7 +9,7 @@ body.micOff, #background.micOff{
     -webkit-animation-duration: 1s; /* Chrome, Safari, Opera */
     animation-name: micOff;
     animation-duration: 1s;
-    background-color: #007ee6;
+    background-color: #008CDB;
 }
 
 body.micOn, #background.micOn{
@@ -17,74 +17,7 @@ body.micOn, #background.micOn{
     -webkit-animation-duration: 1s; /* Chrome, Safari, Opera */
     animation-name: micOn;
     animation-duration: 1s;
-    background-color: #33a3ff;
-}
-
-::-webkit-scrollbar {
-  width: 4px;
-  height: 4px;
-}
-
-::-webkit-scrollbar-button {
-  width: 0px;
-  height: 0px;
-}
-
-::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.3);
-  border: 0px none #ffffff;
-  border-radius: 50px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: #ffffff;
-}
-
-::-webkit-scrollbar-thumb:active {
-  background: #ffffff;
-}
-
-::-webkit-scrollbar-track {
-  border: 0px none #ffffff;
-  border-radius: 50px;
-}
-
-::-webkit-scrollbar-track:hover {
-}
-
-::-webkit-scrollbar-track:active {
-}
-
-::-webkit-scrollbar-corner {
-  background: transparent;
-}
-
-#interactionLogGradientTop {
-	position: absolute;
-	top: calc(30% - 5px);
-	margin-left: 20px;
-	width: calc(99% - 40px);
-	height: 10px;
-	z-index: 999;
-	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#007ee6+0,000000+100&1+0,0+100 */
-	background: -moz-linear-gradient(top,  rgba(0,126,230,1) 0%, rgba(0,0,0,0) 100%); /* FF3.6-15 */
-	background: -webkit-linear-gradient(top,  rgba(0,126,230,1) 0%,rgba(0,0,0,0) 100%); /* Chrome10-25,Safari5.1-6 */
-	background: linear-gradient(to bottom,  rgba(0,126,230,1) 0%,rgba(0,0,0,0) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#007ee6', endColorstr='#00000000',GradientType=0 ); /* IE6-9 */
-}
-
-#interactionLogGradientBottom {
-	position: absolute;
-	bottom: 137px;
-	margin-left: 20px;
-	width: calc(99% - 40px);
-	height: 10px;
-	z-index: 999;
-	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#000000+0,007ee6+100&0+0,1+100 */
-	background: -moz-linear-gradient(top,  rgba(0,0,0,0) 0%, rgba(0,126,230,1) 100%); /* FF3.6-15 */
-	background: -webkit-linear-gradient(top,  rgba(0,0,0,0) 0%,rgba(0,126,230,1) 100%); /* Chrome10-25,Safari5.1-6 */
-	background: linear-gradient(to bottom,  rgba(0,0,0,0) 0%,rgba(0,126,230,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#007ee6',GradientType=0 ); /* IE6-9 */
+    background-color: #008CDB;
 }
 
 a.links:link {
@@ -198,49 +131,36 @@ table.debug, th.debug, td.debug {
 }
 
 #interactionLog {
-	background-color: red;
-	position: absolute;
+	position: relative;
+	margin: 0 auto;
 	text-align: center;
-	width: 99%;
-	top: calc(50% + 100px);
-    overflow-y: scroll;
-	z-index: 2;
+	width: 660px;
 }
 
 #interactionLog p {
 	position: relative;
-	clear: both;
-	color: #fcf8e3;
-	margin-top:10px;
-	font-size: 20px;
-	padding-left: 50px;
-	padding-right: 50px;
-}
-
-#interactionLog p:last-of-type {
-	color: #fcf8e3;
-	/* Commented out for now, makes responses with cards not fit in scroll view */
-	/*font-size: 28px;*/
+    margin-top: 30px;
+    margin-bottom: 30px;
+    font-size: 13px;
+    text-align: left;
+    width: 480px;
+    padding: 10px;
+    border: 1px solid transparent;
+    border-radius: 2px;
 }
 
 #inputWrapper {
-	position: absolute;
-	z-index: 1001;
-	left: calc(50% - 325px);
-	top: 30%;
-}
-
-#background {
-	position: absolute;
-	top: 50%;
-	z-index: 1000;
-	width: 100%;
-	background-color: #007ee6;
+	position: relative;
+	width: 770px;
+	height: 70px;
+	margin: 0 auto;
+	margin-top: 30px;
 }
 
 #listeningState {
 	position: relative;
 	float: left;
+	width: 612px;
 	font-family: 'Open Sans', sans-serif;
 	font-size: 18px;
 	color: white;
@@ -260,25 +180,15 @@ table.debug, th.debug, td.debug {
     color: white;
 }
 
-#git {
-	position: absolute;
-	right: 30px;
-	bottom: 20px;
-	z-index: 1002;
-	font-size: 12px;
-	text-align: right;
-	color: white;
-}
-
 #textInput {
 	position: relative;
 	float: left;
-	width: 600px;
+	width: 650px;
 	height: 20px;
-	margin-bottom: 20px;
+	margin-bottom: 35px;
 	padding: 6px 0px 6px 10px;
 	background-color: white;
-	border-radius: 3px;
+	border-radius: 2px;
 	border: 1px solid white;
 	font-family: 'Open Sans', sans-serif;
 	font-size: 14px;
@@ -318,23 +228,27 @@ table.debug, th.debug, td.debug {
 }
 
 .userStyle {
-	color: rgba(0, 0, 0, 0.2) !important;
+	color: white;
+	background-color: #2AB6F4;
+	float: left;
 }
 
 .botStyle {
-	color: white;
+	color: black;
+	background-color: white;
+	float: right;
 }
 
 .davisvisual__container {
-	margin-top: 400px;
-	position: relative;
-	min-height: 150px;
+	background: transparent url('../images/continuous_delivery.svg') no-repeat calc(50% + 50px) -100px scroll;
+	height: 405px;
+	border-bottom: 3px solid #00A6FB;
 }
 
 .davisvisual__davis {
-	position: fixed;
-    left: 50%;
-    top: 19%;
+	position: absolute;
+    left: calc(50% - 10px);
+    top: 210px;;
     z-index: 1001;
 }
 
@@ -343,32 +257,28 @@ table.debug, th.debug, td.debug {
 	height: 130px !important;
 }
 
-.card-wrapper {
-	display: none;
-	width: 500px;
-	margin: 0 auto;
-	color:  #666666;
-	text-align: left;
-	font-size: 15px;
-}
-
 .card-pretext {
-	margin-left: 5px;
+	margin-left: 10px;
 }
 
 .card-attachments {
-	float: left;
-	padding: 5px;
-	margin-bottom: 20px;
+	display: none;
+	float: right;
+	width: 500px;
+	margin: 0 auto;
+	margin-bottom: 30px;
+	color: #666666;
+	text-align: left;
+	font-size: 13px;
 	border: 1px solid white;
 	background-color: white;
-	border-radius: 3px;
+	border-radius: 2px;
 }
 
 .card-attachment {
 	float: left;
-	padding: 0px 5px 0px 0px;
-	margin: 5px;
+	padding: 0px 10px 0px 0px;
+	margin: 10px;
 }
 
 .card-bar {
@@ -440,13 +350,13 @@ a.card-link-attachment:active {
 .card-fields {
 	clear: both;
 	float: left;
-	margin-top: 5px;
+	margin-top: 10px;
 }
 
 .card-field {
 	float: left;
 	min-width: 200px;
-	margin-bottom: 5px;
+	margin-bottom: 10px;
 	margin-right: 10px;
 }
 
@@ -458,7 +368,7 @@ a.card-link-attachment:active {
 	float: left;
 	max-width: 400px;
 	max-height: 500px;
-	margin: 5px 10px 5px 0px;
+	margin: 10px 20px 10px 0px;
 	cursor: pointer;
 }
 
@@ -466,7 +376,7 @@ a.card-link-attachment:active {
 	display: table-cell;
 	height: 100%;
 	vertical-align: middle;
-	padding-left: 5px;
+	padding-left: 10px;
 }
 
 .card-thumb-url {
@@ -477,4 +387,72 @@ a.card-link-attachment:active {
 
 .hidden-feature {
 	display: none;
+}
+
+.rightTriangleText {
+	position: relative;
+	float: right;
+	width: 0;
+	height: 0;
+	margin-top: 40px;
+	border-top: 10px solid transparent;
+	border-bottom: 10px solid transparent;
+	border-left: 10px solid white;
+}
+
+.rightTriangleCard {
+	position: relative;
+	float: right;
+	width: 0;
+	height: 0;
+	margin-top: 30px;
+	border-top: 10px solid transparent;
+	border-bottom: 10px solid transparent;
+	border-left: 10px solid white;
+}
+
+.rightCircleText {
+    position: relative;
+    clear: both;
+    float: right;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    margin-top: 20px;
+    margin-left: 10px;
+    background-color: white;
+}
+.rightCircleCard {
+    position: relative;
+    clear: both;
+    float: right;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    margin-top: 10px;
+    margin-left: 10px;
+    background-color: white;
+}
+
+.leftTriangleText {
+	position: relative;
+	float: left;
+	width: 0;
+	height: 0;
+	margin-top: 40px;
+	border-top: 10px solid transparent;
+	border-bottom: 10px solid transparent;
+	border-right: 10px solid #2AB6F4;
+}
+
+.leftCircleText {
+	clear:both;
+    position: relative;
+    float: left;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    margin-top: 20px;
+    margin-right: 10px;
+    background-color: #2AB6F4;
 }

@@ -9,7 +9,7 @@ var onReady = function() {
   var canvasResize = function() {
     var desiredSize = (container.offsetWidth / 100) * canvasSizePercent;
     var scalefactor = (1 / canvasSize) * desiredSize;
-    davisContainer.setAttribute('style','-webkit-transform: translate(-50%, -50%) scale('+scalefactor+'); transform: translate(-50%, -50%) scale('+scalefactor+');');
+    //davisContainer.setAttribute('style','-webkit-transform: translate(-50%, -50%) scale('+scalefactor+'); transform: translate(-50%, -50%) scale('+scalefactor+');');
   };
   window.davisvisualization.init('#davisContainer');
   window.onresize = canvasResize;

@@ -98,9 +98,6 @@ var davis = (function () {
         this.connectedUrlElemId = connectedUrlElemId;
         this.gitElemId = gitElemId;
         
-        var sentences = []; // Array of response sentences to be typed into interaction log
-        var textBeingTyped;
-        var elementBeingTyped;
         var cards = localStorage.getItem('davis-cards-enabled') || 'true';
         var scrollInterval;
         var inputHistoryIndex = -1;
@@ -161,7 +158,6 @@ var davis = (function () {
          * Brightens the body's background-color
          */
         function brightenBackground() {
-            $('#interactionLogGradientTop').hide();
             $('body').addClass('micOn');
             $('body').removeClass('micOff');
             $('#background').addClass('micOn');
@@ -177,7 +173,6 @@ var davis = (function () {
                 $('body').removeClass('micOn');
                 $('#background').addClass('micOff');
                 $('#background').removeClass('micOn');
-                $('#interactionLogGradientTop').fadeIn(3000);
             }
         }
         
@@ -222,28 +217,18 @@ var davis = (function () {
          * 
          * @param {Object} response
          * @param {Boolean} isDavisSpeaking
-         * @param {Boolean} isTypeWriter
          */
-        function addToInteractionLog(response, isDavisSpeaking, isTypeWriter) {
+        function addToInteractionLog(response, isDavisSpeaking) {
             
             if (response.card && cards === 'true') {
                 
                 addCard(response.card);
                  
-            } else if (isTypeWriter) {
-                
-                typeText(response.text);
-                
             } else {
                 
-                var styleClass = (isDavisSpeaking) ? 'botStyle' : 'userStyle';
-                var el = $('<p>' + response.text.trim() + '</p>').css('display', 'none').addClass(styleClass);
-                $('#'+interactionLogElemId).append(el);
-                el.fadeIn(400);
+                addText(response.text, isDavisSpeaking);
                 
             }
-            
-            $('#'+interactionLogElemId).scrollTop($('#'+interactionLogElemId).prop('scrollHeight'));
             
         }
         
@@ -338,18 +323,28 @@ var davis = (function () {
                     if (atm.pretext !== undefined && attachment.length == 0 && index == card.attachments.length - 1) {
                         
                         html = html.replace('{{attachments}}', attachments);
-                        $('#'+interactionLogElemId).append(html);
-                        $('.card-wrapper').fadeIn(400);
+                        var triangle = $('<div></div>').addClass('rightTriangleCard').css('display', 'none');
+                        var circle = $('<div></div>').addClass('rightCircleCard').css('display', 'none');
+                        var bubble = $(html);
                         
+                        $('#'+interactionLogElemId).prepend(bubble);
+                        $('#'+interactionLogElemId).prepend(triangle);
+                        $('#'+interactionLogElemId).prepend(circle);
+                        
+                        bubble.slideDown(400).fadeIn(400);
+                        triangle.slideDown(400).fadeIn(400);
+                        circle.slideDown(400).fadeIn(400);
+                     
                         if (atm.pretext) {
-                            addToInteractionLog({text: atm.pretext.replace(/\n/g, '<br>')}, true, false);
+                            setTimeout( () => {
+                                addToInteractionLog({text: atm.pretext.replace(/\n/g, '<br>')}, true, false);
+                            }, 1000);
                         }
                         
                     } else if (atm.pretext !== undefined) {
                         
                         attachments += localResponses.card.pretext.replace('{{pretext}}', atm.pretext.replace(/\n/g, '<br>'));
                         attachments += attachment;
-                        
                         
                     } else {
                         attachments += attachment;
@@ -358,11 +353,23 @@ var davis = (function () {
                     if (attachment.length > 0 && index == card.attachments.length - 1) {
                         
                         html = html.replace('{{attachments}}', attachments);
-                        $('#'+interactionLogElemId).append(html);
-                        $('.card-wrapper').fadeIn(400); 
+           
+                        var triangle = $('<div></div>').addClass('rightTriangleCard').css('display', 'none');
+                        var circle = $('<div></div>').addClass('rightCircleCard').css('display', 'none');
+                        var bubble = $(html);
+                      
+                        $('#'+interactionLogElemId).prepend(bubble);
+                        $('#'+interactionLogElemId).prepend(triangle);
+                        $('#'+interactionLogElemId).prepend(circle);
+                        
+                        bubble.slideDown(400).fadeIn(400);
+                        triangle.slideDown(400).fadeIn(400);
+                        circle.slideDown(400).fadeIn(400);
                         
                         if (atm.pretext) {
-                            addToInteractionLog({text: atm.pretext.replace(/\n/g, '<br>')}, true, false);
+                            setTimeout( () => {
+                                addToInteractionLog({text: atm.pretext.replace(/\n/g, '<br>')}, true, false);
+                            }, 1000);
                         }
                         
                     }    
@@ -371,6 +378,32 @@ var davis = (function () {
                 
             }
     
+        }
+        
+        function addText(text, isDavisSpeaking) {
+            var bubbleClass = (isDavisSpeaking) ? 'botStyle' : 'userStyle';
+            var triangleClass = (isDavisSpeaking) ? 'rightTriangleText' : 'leftTriangleText';
+            var circleClass = (isDavisSpeaking) ? 'rightCircleText' : 'leftCircleText';
+           
+            var bubble = $('<p>' + text.trim() + '</p>').addClass(bubbleClass).css('display', 'none');
+            var triangle = $('<div></div>').addClass(triangleClass).css('display', 'none');
+            var circle = $('<div></div>').addClass(circleClass).css('display', 'none');
+            
+            if (isDavisSpeaking) {
+                $('#'+interactionLogElemId).prepend(bubble);
+                $('#'+interactionLogElemId).prepend(triangle);
+                $('#'+interactionLogElemId).prepend(circle);
+                bubble.slideDown(400).fadeIn(400);
+                triangle.slideDown(400).fadeIn(400);
+                circle.slideDown(400).fadeIn(400);
+            } else {
+                $('#'+interactionLogElemId).prepend(bubble);
+                $('#'+interactionLogElemId).prepend(triangle);
+                $('#'+interactionLogElemId).prepend(circle);
+                bubble.slideDown(400).fadeIn(400);
+                triangle.slideDown(400).fadeIn(400);
+                circle.slideDown(400).fadeIn(400);
+            }
         }
         
         /**
@@ -406,60 +439,6 @@ var davis = (function () {
             
             return str;
          }
-        
-        /**
-         * Forwards text to be added to interactionLog using a type-writer animation
-         * 
-         * @param {String} text
-         */
-        function typeText(text) {
-            
-            sentences.push(text);
-            var text = sentences[0];
-            sentences.splice(0, 1);
-        
-            textBeingTyped = text;
-            elementBeingTyped = $('<p></p>').addClass('botStyle');
-        
-            $('#'+interactionLogElemId).append(elementBeingTyped);
-            
-            scrollInterval = setInterval( function () {
-                $('#'+interactionLogElemId).scrollTop($('#'+interactionLogElemId).prop('scrollHeight'));
-            }, 200);
-        
-            elementBeingTyped.typed({
-                strings: [text],
-                typeSpeed: 10,
-                startDelay: 600,
-                showCursor: false,
-                callback: function () {
-                    clearInterval(scrollInterval);
-                }
-            });
-            
-        }
-        
-        /**
-         * Stops typing animation and displays text being typed
-         */
-        function stopTypewriter() {
-            
-           
-            if (elementBeingTyped) {
-                
-                // Stop typing
-                elementBeingTyped.data('typed').stop();
-                clearInterval(scrollInterval);
-                $('#'+interactionLogElemId).scrollTop($('#'+interactionLogElemId).prop('scrollHeight'));
-                
-                // Display text
-                $(elementBeingTyped).css('display', 'none');
-                $(elementBeingTyped).html(textBeingTyped);
-                $(elementBeingTyped).fadeIn(400);
-                
-            }
-            
-        }
         
         /**
          * Submits text from textInput 
@@ -590,8 +569,8 @@ var davis = (function () {
                 $('#'+textInputElemId).focus();    
             },
             
-            addToInteractionLog: function (response, isDavisSpeaking, typeText) {
-                addToInteractionLog(response, isDavisSpeaking, typeText);
+            addToInteractionLog: function (response, isDavisSpeaking) {
+                addToInteractionLog(response, isDavisSpeaking);
             },
             
             submitTextInput: function (keyCode) {
@@ -631,14 +610,6 @@ var davis = (function () {
             
             attachEventListeners: function () {
                 attachEventListeners();
-            },
-            
-            getTextBeingTyped: function () {
-                return textBeingTyped;  
-            },
-            
-            stopTypewriter: function () {
-                stopTypewriter();
             },
             
             enableOfflineMode: function (isEnabled) {
@@ -785,14 +756,10 @@ var davis = (function () {
                 document.getElementById('davisContainer').dispatchEvent(evt);
             }
         
-            // Stop typewriter and any audio that's playing
+            // Stop any audio that's playing
             if (playerReady) {
                 player.pause();
                 player.currentTime = 0;
-            }
-            
-            if (!isMuted && isSpeaking) {
-                view.stopTypewriter();
             }
             
             isMuted = true;
@@ -1411,10 +1378,9 @@ var davis = (function () {
             
             if (isSpeaking) {
                 
-                // Stop typewriter and any audio that's playing
+                // Stop any audio that's playing
                 player.pause();
                 player.currentTime = 0;
-                view.stopTypewriter();
                 isMuted = false;
                 enableListenForKeyword(false);
                 document.dispatchEvent(listeningStateEvents.enablingMic);

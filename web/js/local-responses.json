@@ -72,7 +72,7 @@
         "padova's"
     ],
     "card": {
-        "wrapper": "<div class='card-wrapper'><div class='card-attachments'>{{attachments}}</div></div>",
+        "wrapper": "<div class='card-attachments'>{{attachments}}</div>",
         "pretext": "<div class='card-pretext'>{{pretext}}</div>",
         "attachment": "<div class='card-attachment'><div class='card-bar' style='border-color: {{color}}'></div><div class='card-content'>{{attachment}}</div><div class='card-thumb-url-wrapper'>{{thumb_url}}</div></div>",
         "title": "<div class='card-title'>{{title}}</div>",

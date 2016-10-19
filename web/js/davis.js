@@ -162,7 +162,6 @@ var davis = (function () {
          */
         function brightenBackground() {
             $('#interactionLogGradientTop').hide();
-            $('#interactionLogGradientBottom').hide();
             $('body').addClass('micOn');
             $('body').removeClass('micOff');
             $('#background').addClass('micOn');
@@ -179,7 +178,6 @@ var davis = (function () {
                 $('#background').addClass('micOff');
                 $('#background').removeClass('micOn');
                 $('#interactionLogGradientTop').fadeIn(3000);
-                $('#interactionLogGradientBottom').fadeIn(3000);
             }
         }
         
@@ -1501,11 +1499,11 @@ var davis = (function () {
                     
                             view.addToInteractionLog({text: localResponses.greetings.micPermission.text}, true, false);
                             setTimeout(function () {
-                                view.addToInteractionLog({text: localResponses.greetings.thenHelp.text}, true, false);
+                                // view.addToInteractionLog({text: localResponses.greetings.thenHelp.text}, true, false);
                             }, 5000);
                             
                         } else {
-                            view.addToInteractionLog({text: localResponses.greetings.help.text}, true, false);
+                            // view.addToInteractionLog({text: localResponses.greetings.help.text}, true, false);
                         }
                         
                     } else {

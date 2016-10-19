@@ -42,7 +42,7 @@
         "michael": "en-US_MichaelVoice"
     },
     "listeningStates": {
-        "sleeping": "Wake me by saying \"Hey Davis\"",
+        "sleeping": "Say \"Hey Davis\", type a question, or click the mic to wake me.",
         "enablingMic": "Enabling mic ...",
         "listening": "Listening ...",
         "processing": "Processing ...",
